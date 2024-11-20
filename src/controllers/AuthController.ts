@@ -1,20 +1,27 @@
 import { Request, Response } from "express";
-import { AuthService } from "../services/AuthSerice";
+
+import { AuthService } from "../services/AuthService";
+
 import { UniqueDataError } from "../errors/UniqueDataError";
-import { generateUUID } from "../utils/generateUUID";
-import { USER_ROLES } from "../enums/UserRoles";
-import { generateAccessToken } from "../helpers/generateAccessToken";
-import { success } from "../utils/responses";
-import { comparePasswordHashed, hashData } from "../utils/hashData";
-import { UserPrivate, UserPublic } from "../interfaces/User";
 import { InvalidCredentialsError } from "../errors/InvalidCredentialsError";
+import { NotFoundError } from "../errors/NotFoundError";
+
+import { generateAccessToken } from "../helpers/generateAccessToken";
+import { generateUUID } from "../utils/generateUUID";
+import { comparePasswordHashed, hashData } from "../utils/hashData";
+import { success } from "../utils/responses";
+
+import { USER_ROLES } from "../enums/UserRoles";
+
+import type { UserPrivate } from "../interfaces/User";
 
 const register = async (req: Request, res: Response) => {
   const { username, email, password } = req.body
 
-  const userFound = AuthService.findUser(username);
+  const userFoundByUsername = AuthService.findUser(username);
+  const userFoundByEmail = AuthService.findUser(email);
 
-  if (userFound) {
+  if (userFoundByUsername || userFoundByEmail) {
     throw new UniqueDataError('User already registered with the same username or email')
   }
 
@@ -25,7 +32,7 @@ const register = async (req: Request, res: Response) => {
     uuid,
     username, email, 
     password: passwordHashed,
-    role: USER_ROLES.MORTAL
+    role: USER_ROLES.GOD
   })
 
   const ACCESS_TOKEN = generateAccessToken(userCreated)
@@ -57,6 +64,18 @@ const login = async (req: Request, res: Response) => {
   })
 }
 
+const switchRole = async (req: Request, res: Response) => {
+  const { uuid } = req.params
+
+  const { ok, data } = AuthService.switchRole(uuid)
+
+  if (ok) {
+    success(res, 200, 'Role updated correctly', { new_role: data })
+  } else {
+    throw new NotFoundError('User not found')
+  }
+}
+
 export const AuthController = {
-  register, login
+  register, login, switchRole
 }
