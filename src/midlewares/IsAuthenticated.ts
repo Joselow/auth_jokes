@@ -1,6 +1,10 @@
 import { NextFunction, Request, Response } from "express";
+
 import { ValidationError } from "../errors/ValidationError";
+
 import { verifyAccessToken } from "../helpers/generateAccessToken";
+
+import type { UserPublic } from "../interfaces/User";
 
 export const isAuthenticated =  (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization
@@ -11,9 +15,9 @@ export const isAuthenticated =  (req: Request, res: Response, next: NextFunction
   const BEARER_TOKEN = authHeader.split(' ')[1];
 
   try {
-    const { uuid, username, email, role } = verifyAccessToken(BEARER_TOKEN)    
-    // here we should verify if the user exists, but it this case si not necessary
-    req.body = { uuid, username, email, role }
+    const { uuid, username, email, role } = verifyAccessToken<UserPublic>(BEARER_TOKEN) 
+    // here we should verify if the user exists, but it this case si not necessary    
+    req.body = { uuid, username, email, role}
     next()
   } catch (error) {
     next(new ValidationError('Access token not valid'))
