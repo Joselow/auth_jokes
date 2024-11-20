@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AuthService } from "../Services/AuthSerice";
+import { AuthService } from "../services/AuthSerice";
 import { UniqueDataError } from "../errors/UniqueDataError";
 import { generateUUID } from "../utils/generateUUID";
 import { USER_ROLES } from "../enums/UserRoles";
