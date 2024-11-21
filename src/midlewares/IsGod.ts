@@ -1,14 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 
-import { AuthService } from "../services/AuthService";
+import { AuthService } from "../services/AuthService.js";
 
-import { ValidationError } from "../errors/ValidationError";
-import { NotFoundError } from "../errors/NotFoundError";
-import { ForbiddenError } from "../errors/ForbiddenError";
+import { ValidationError } from "../errors/ValidationError.js";
+import { NotFoundError } from "../errors/NotFoundError.js";
+import { ForbiddenError } from "../errors/ForbiddenError.js";
 
-import { USER_ROLES } from "../enums/UserRoles";
+import { USER_ROLES } from "../enums/UserRoles.js";
 
-import type { UserPrivate } from "../interfaces/User";
+import type { UserPrivate } from "../interfaces/User.js";
 
 export const isGod = (req: Request, response: Response, next: NextFunction) => {
   const { uuid: uuidBody } = req.body

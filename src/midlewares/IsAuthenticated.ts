@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 
-import { ValidationError } from "../errors/ValidationError";
+import { ValidationError } from "../errors/ValidationError.js";
 
-import { verifyAccessToken } from "../helpers/generateAccessToken";
+import { verifyAccessToken } from "../helpers/generateAccessToken.js";
 
-import type { UserPublic } from "../interfaces/User";
+import type { UserPublic } from "../interfaces/User.js";
 
 export const isAuthenticated =  (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization

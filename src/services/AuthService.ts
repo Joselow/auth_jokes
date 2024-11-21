@@ -1,17 +1,20 @@
-import { UserSchema } from ".";
+import { UserSchema } from "./index.js";
 
-import { USER_ROLES } from "../enums/UserRoles";
+import { USER_ROLES } from "../enums/UserRoles.js";
 
-import type { ResponseService } from "../interfaces/types";
-import type { UniqueUserFields, UserPrivate, UserPublic } from "../interfaces/User";
+import type { ResponseService } from "../interfaces/types.js";
+import type { UniqueUserFields, UserPrivate, UserPublic } from "../interfaces/User.js";
 
 const findUser = (value: string) => {
-  const fields: UniqueUserFields [] = ['uuid', 'username', 'email'];
+  // const fields: UniqueUserFields [] = ['uuid', 'username', 'email'];
 
-  for (const field of fields) {
-    const user = UserSchema.findOne({ [field]: value });
-    if (user)  return user ?? null
-  }
+  // for (const field of fields) {
+  //   const user = UserSchema.findOne({ [field]: value });
+  //   if (user)  return user ?? null
+  // }
+  return UserSchema.find((user: UserPrivate) => user.username === value || 
+    user.email === value || user.uuid === value
+  );
 }
 
 const createUser = (user: UserPrivate): UserPublic => {
@@ -19,6 +22,10 @@ const createUser = (user: UserPrivate): UserPublic => {
   const { password, ...otherFields } = user
   return otherFields
 }
+
+const findUserByUsernameOrEmail = (username: string, email: string) => {
+  return UserSchema.find((user: UserPrivate) => user.username === username || user.email === email);
+};
 
 const switchRole = (uuid: string): ResponseService => {
   const user = UserSchema.findOne({ uuid });
@@ -36,5 +43,5 @@ const switchRole = (uuid: string): ResponseService => {
 }
 
 export const AuthService = {
-  findUser, createUser, switchRole
+  findUser, createUser, switchRole, findUserByUsernameOrEmail
 }

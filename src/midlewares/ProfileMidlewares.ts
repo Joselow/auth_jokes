@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { ValidationError } from "../errors/ValidationError";
+
+import { ValidationError } from "../errors/ValidationError.js";
 
 export const verifyUUID = (req: Request, res: Response, next: NextFunction) => {
   const { uuid } = req.params

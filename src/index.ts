@@ -2,8 +2,8 @@ import 'dotenv/config'
 
 import express, { Request, Response } from "express";
 
-import ApiRouter from './routes/index'
-import { errorHandling } from "./midlewares/ErrorHandling";
+import ApiRouter from './routes/index.js'
+import { errorHandling } from "./midlewares/ErrorHandling.js";
 
 const app = express()
 

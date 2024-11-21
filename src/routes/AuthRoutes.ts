@@ -1,13 +1,13 @@
 import { Router } from "express";
 
-import { AuthController } from "../controllers/AuthController";
+import { AuthController } from "../controllers/AuthController.js";
 
-import { validateRegisterAuthMidleware, validateLoginAuthMidleware } from "../midlewares/AuthMidlewares";
-import { isAuthenticated } from "../midlewares/IsAuthenticated";
-import { isGod } from "../midlewares/IsGod";
-import { verifyUUID } from "../midlewares/ProfileMidlewares";
+import { validateRegisterAuthMidleware, validateLoginAuthMidleware } from "../midlewares/AuthMidlewares.js";
+import { isAuthenticated } from "../midlewares/IsAuthenticated.js";
+import { isGod } from "../midlewares/IsGod.js";
+import { verifyUUID } from "../midlewares/ProfileMidlewares.js";
 
-import { catchErrors } from "../utils/catchErrors";
+import { catchErrors } from "../utils/catchErrors.js";
 
 const router = Router();
 

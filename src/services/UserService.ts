@@ -1,4 +1,4 @@
-import { UserSchema } from "."
+import { UserSchema } from "./index.js"
 
 const getUsers = () => {
     return UserSchema.find()

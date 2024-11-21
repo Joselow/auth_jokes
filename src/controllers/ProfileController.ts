@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { AuthService } from "../services/AuthService";
-import { success } from "../utils/responses";
-import { NotFoundError } from "../errors/NotFoundError";
+
+import { AuthService } from "../services/AuthService.js";
+import { success } from "../utils/responses.js";
+import { NotFoundError } from "../errors/NotFoundError.js";
 
 const getProfile = (req: Request, res: Response) => {
   const { uuid } = req.body

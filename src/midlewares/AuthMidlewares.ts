@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import { verifyLoginSchema, verifyRegisterSchema } from "../schemas/AuthSchema";
-import { ValidationError } from "../errors/ValidationError";
-import { formatValidationErrors } from "../utils/formatValidationErrors";
+
+import { verifyLoginSchema, verifyRegisterSchema } from "../schemas/AuthSchema.js";
+import { ValidationError } from "../errors/ValidationError.js";
+import { formatValidationErrors } from "../utils/formatValidationErrors.js";
 
 export const validateLoginAuthMidleware = async (req: Request, res: Response, next: NextFunction) => {
   const { username, email, password } = req.body

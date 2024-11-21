@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express"
 
-import { UserService } from "../services/UserService"
+import { UserService } from "../services/UserService.js"
 
-import { success } from "../utils/responses"
-import { UserPrivate } from "../interfaces/User"
+import { success } from "../utils/responses.js"
+import { UserPrivate } from "../interfaces/User.js"
 
 
 const getUsers = async (req: Request, res: Response, next: NextFunction) => {

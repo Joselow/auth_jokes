@@ -1,27 +1,26 @@
 import { Request, Response } from "express";
 
-import { AuthService } from "../services/AuthService";
+import { AuthService } from "../services/AuthService.js";
 
-import { UniqueDataError } from "../errors/UniqueDataError";
-import { InvalidCredentialsError } from "../errors/InvalidCredentialsError";
-import { NotFoundError } from "../errors/NotFoundError";
+import { UniqueDataError } from "../errors/UniqueDataError.js";
+import { InvalidCredentialsError } from "../errors/InvalidCredentialsError.js";
+import { NotFoundError } from "../errors/NotFoundError.js";
 
-import { generateAccessToken } from "../helpers/generateAccessToken";
-import { generateUUID } from "../utils/generateUUID";
-import { comparePasswordHashed, hashData } from "../utils/hashData";
-import { success } from "../utils/responses";
+import { generateAccessToken } from "../helpers/generateAccessToken.js";
+import { generateUUID } from "../utils/generateUUID.js";
+import { comparePasswordHashed, hashData } from "../utils/hashData.js";
+import { success } from "../utils/responses.js";
 
-import { USER_ROLES } from "../enums/UserRoles";
+import { USER_ROLES } from "../enums/UserRoles.js";
 
-import type { UserPrivate } from "../interfaces/User";
+import type { UserPrivate } from "../interfaces/User.js";
 
 const register = async (req: Request, res: Response) => {
   const { username, email, password } = req.body
 
-  const userFoundByUsername = AuthService.findUser(username);
-  const userFoundByEmail = AuthService.findUser(email);
+  const userFound= AuthService.findUserByUsernameOrEmail(username, email);
 
-  if (userFoundByUsername || userFoundByEmail) {
+  if (userFound) {
     throw new UniqueDataError('User already registered with the same username or email')
   }
 
