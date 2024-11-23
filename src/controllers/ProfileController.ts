@@ -4,7 +4,7 @@ import { AuthService } from "../services/AuthService.js";
 import { success } from "../utils/responses.js";
 import { NotFoundError } from "../errors/NotFoundError.js";
 
-const getProfile = (req: Request, res: Response) => {
+const getProfile = async(req: Request, res: Response) => {
   const { uuid } = req.body
   
   const user = AuthService.findUser(uuid)

@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 import { Response } from "express";
 
 export const success = ( res: Response, status: number, message: string, data: any ) =>{
@@ -9,7 +11,9 @@ export const success = ( res: Response, status: number, message: string, data: a
 }
 
 export const error = (res: Response, status: number, message: string, errors?: any) => {
-  console.log('respuesta error');
+  if (String(process.env.NODE_ENV).toLowerCase() !== "production" || String(process.env.NODE_ENV).toLowerCase() !== "prod" ) {
+    console.log('Respuesta Error');
+  }
   
   res.status(status).json({
     success: false,

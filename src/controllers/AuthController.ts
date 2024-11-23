@@ -49,7 +49,7 @@ const login = async (req: Request, res: Response) => {
   const userFound: UserPrivate = AuthService.findUser(username || email);
 
   if (!userFound) throw new InvalidCredentialsError('Invalid credentials')
-
+  
   const credentialsValid = await comparePasswordHashed(password, userFound.password)
 
   if (!credentialsValid) throw new InvalidCredentialsError('Invalid credentials')

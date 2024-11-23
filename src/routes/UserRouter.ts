@@ -1,9 +1,10 @@
 import { Router } from "express";
 
 import { UserController } from "../controllers/UserController.js";
+import { catchErrors } from "../utils/catchErrors.js";
 
 const router = Router()
 
-router.get('/', UserController.getUsers)
+router.get('/', catchErrors(UserController.getUsers))
 
 export default router
