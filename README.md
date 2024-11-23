@@ -6,7 +6,7 @@
 |------------------------------------|-------------------------------------------------------------------|
 | `POST /api/register`               | Registrar un nuevo usuario.                                       |
 | `POST /api/login`                  | Iniciar sesión con un usuario existente.                          |
-| `GET /api/my-joke`                 | Ver los chistes del usuario autenticado.                          |
+| `GET /api/my-joke`                 | Ver algunos chistes.                                              |
 | `GET /api/profile`                 | Ver el perfil del usuario autenticado.                            |
 | `GET /api/users`                   | Ver la lista de usuarios (solo administradores).                  |
 | `PUT /api/change-role/:uuid`       | Cambiar el rol de un usuario (solo administradores).              |
