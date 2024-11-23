@@ -11,7 +11,6 @@ import { isGod } from "../midlewares/IsGod.js";
 const router = Router()
 
 router.use('/', AuthRouter)
-
 router.use('/profile', [isAuthenticated], ProfileRouter)
 router.use('/users', [isAuthenticated, isGod], UserRouter)
 router.use('/my-joke', [isAuthenticated], JokeRouter)

@@ -13,7 +13,7 @@ export const verifyRegisterSchema = async(data: any) =>{
 export const LoginSchema = z.object({
   username: z.string().optional(),
   email: z.string().email().optional(),
-  password: z.string().min(6).max(72),
+  password: z.string()
 }).refine(  
   data => data.username || data.email,
   {
