@@ -20,6 +20,7 @@ app.use('/api/', ApiRouter)
 app.get('/author/', (req: Request, res: Response) => {
   res.json({    
     author: 'joselow',
+    project: 'https://github.com/Joselow/auth_jokes',
     social_networks: {
       'Github': 'https://github.com/Joselow',
     }
