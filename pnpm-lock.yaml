@@ -20,6 +20,9 @@ dependencies:
   jsonwebtoken:
     specifier: ^9.0.2
     version: 9.0.2
+  typescript:
+    specifier: ^5.6.3
+    version: 5.6.3
   uuid:
     specifier: ^11.0.3
     version: 11.0.3
@@ -46,9 +49,6 @@ devDependencies:
   tsx:
     specifier: ^4.19.2
     version: 4.19.2
-  typescript:
-    specifier: ^5.6.3
-    version: 5.6.3
 
 packages:
 
@@ -1589,7 +1589,6 @@ packages:
     resolution: {integrity: sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==}
     engines: {node: '>=14.17'}
     hasBin: true
-    dev: true
 
   /undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
