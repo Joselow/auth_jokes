@@ -18,9 +18,10 @@ import type { UserPrivate } from "../interfaces/User.js";
 const register = async (req: Request, res: Response) => {
   const { username, email, password } = req.body
 
-  const userFound= AuthService.findUserByUsernameOrEmail(username, email);
+  const userFound = AuthService.findUser(email)
+  const userFoundByUsername = AuthService.findUser(username)
 
-  if (userFound) {
+  if (userFound || userFoundByUsername) {
     throw new UniqueDataError('User already registered with the same username or email')
   }
 
